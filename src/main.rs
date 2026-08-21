@@ -33,24 +33,23 @@ fn main() {
         .timeout(Duration::from_millis(100))
         .open()
         .expect("serial open error");
-    println!("done!");
+    println!("done!\n");
 
     // write values out of the port and read them back in
     let mut tx_buf: [u8; 1] = [0u8; 1];
     let mut rx_buf: [u8; 1] = [0u8; 1];
     let mut good = 0;
     let mut bad = 0;
-    let wait_millis = Duration::from_millis(1);
-    let mut time = Instant::now();
-    let mut keep_going = true;
+    // let wait_millis = Duration::from_millis(1);
+    // let mut time = Instant::now();
     
-    while keep_going{
+    loop {
 
         // send a set of 255 chars
         for i in 0..255 {
-            // wait for next tick
-            while Instant::now() - time < wait_millis {}
-            time = Instant::now();
+            // // wait for next tick
+            // while Instant::now() - time < wait_millis {}
+            // time = Instant::now();
 
             // send a value
             tx_buf[0] = i;
